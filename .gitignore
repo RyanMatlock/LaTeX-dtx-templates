@@ -1,0 +1,17 @@
+# Emacs cruft
+\#*#
+
+# LaTeX cruft/things to ignore
+*.pdf
+*.aux
+*.log
+*.fdb_latexmk
+*.fls
+*.out
+*.idx
+*.hd
+*.glo
+*.ilg
+*.ind
+*.gls
+auto/*
