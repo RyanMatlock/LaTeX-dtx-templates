@@ -4,15 +4,38 @@
 \iffalse
 %</internal>
 %<*readme>
-----------------------------------------------------------------
+-------------------------------------------------------------------------------
 demopkg --- description text
-E-mail: you@your.domain
+email: you@your.domain
 Released under the LaTeX Project Public License v1.3c or later
 See http://www.latex-project.org/lppl.txt
-----------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 Some text about the package: probably the same as the abstract.
 %</readme>
+%<*license>
+## demopkg.dtx
+Copyright 2015 M. Y. Name
+
+This work may be distributed and/or modified under the conditions of the LaTeX
+Project Public License, either version 1.3 of this license or (at your option)
+any later version.
+
+The latest version of this license is in http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of LaTeX version
+2005/12/01 or later.
+
+This work has the LPPL maintenance status `maintained'.
+
+The Current Maintainer of this work is M. Y. Name.
+
+This work consists of the files
+* demopkg.dtx
+and the derived files
+* demopkg.ins,
+* demopkg.sty
+* demopkg.pdf.
+%</license>
 %<*internal>
 \fi
 \def\nameofplainTeX{plain}
@@ -27,7 +50,7 @@ Some text about the package: probably the same as the abstract.
 \preamble
 ----------------------------------------------------------------
 demopkg --- description text
-E-mail: you@your.domain
+email: you@your.domain
 Released under the LaTeX Project Public License v1.3c or later
 See http://www.latex-project.org/lppl.txt
 ----------------------------------------------------------------
@@ -67,7 +90,10 @@ and the derived files           demopkg.ins,
 \nopreamble\nopostamble
 \usedir{doc/latex/demopkg}
 \generate{
-  \file{README.txt}{\from{\jobname.dtx}{readme}}
+  \file{README.md}{\from{\jobname.dtx}{readme}}
+}
+\generate{
+  \file{LICENSE.md}{\from{\jobname.dtx}{license}}
 }
 \ifx\fmtname\nameofplainTeX
   \expandafter\endbatchfile
@@ -102,9 +128,15 @@ and the derived files           demopkg.ins,
 %  }^^A
 %}
 %\author{^^A
-%  You\thanks{E-mail: you@your.domain}^^A
+%  You\thanks{email: you@your.domain}^^A
 %}
 %\date{Released \filedate}
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\DoNotIndex{\newcommand}
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %\maketitle
 %
@@ -127,8 +159,8 @@ and the derived files           demopkg.ins,
 %\begin{macro}{\examplemacro}
 %\changes{v1.0}{2009/10/06}{Some change from the previous version}
 %    \begin{macrocode}
-\newcommand*\examplemacro[2][]{%
-  Some code here, probably
+\newcommand{\examplemacro}[2][]{%
+  \frob{#1}: \foo{#2}
 }
 %    \end{macrocode}
 %\end{macro} 
