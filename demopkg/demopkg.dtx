@@ -4,14 +4,13 @@
 \iffalse
 %</internal>
 %<*readme>
--------------------------------------------------------------------------------
-demopkg --- description text
-email: you@your.domain
-Released under the LaTeX Project Public License v1.3c or later
-See http://www.latex-project.org/lppl.txt
--------------------------------------------------------------------------------
+# demopkg --- brief description
 
-Some text about the package: probably the same as the abstract.
+## Description
+Some text about the package.
+
+## Installation
+Run `pdflatex demopkg.dtx` to generate the `.ins`, `.sty`, and `.pdf` files.
 %</readme>
 %<*license>
 ## demopkg.dtx
@@ -30,11 +29,11 @@ This work has the LPPL maintenance status `maintained'.
 The Current Maintainer of this work is M. Y. Name.
 
 This work consists of the files
-* demopkg.dtx
+* `demopkg.dtx`
 and the derived files
-* demopkg.ins,
-* demopkg.sty
-* demopkg.pdf.
+* `demopkg.ins`,
+* `demopkg.sty`,
+* `demopkg.pdf`.
 %</license>
 %<*internal>
 \fi
@@ -111,6 +110,7 @@ and the derived files           demopkg.ins,
 \usepackage{lmodern}
 \usepackage{\jobname}
 \usepackage[numbered]{hypdoc}
+\usepackage{gitinfo2}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
@@ -124,7 +124,8 @@ and the derived files           demopkg.ins,
 %
 %\title{^^A
 %  \textsf{demopkg} --- description text\thanks{^^A
-%    This file describes version \fileversion, last revised \filedate.^^A
+%    This file describes version \fileversion, last revised \filedate\space ^^A
+%    (\texttt{git} commit \texttt{\gitAbbrevHash}).
 %  }^^A
 %}
 %\author{^^A
