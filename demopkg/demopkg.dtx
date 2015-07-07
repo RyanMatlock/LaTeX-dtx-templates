@@ -18,14 +18,14 @@ Package usage details should be covered by `demopkg.pdf`.
 ## Installation
 Run
 
-```bash
+```
 $ pdflatex demopkg.dtx
 ```
 
 to generate the `.ins`, `.sty`, and `.pdf` files. In order to properly generate
 the change history and index, run
 
-```bash
+```
 $ makeindex -s gind.ist demopkg
 $ makeindex -s gglo.ist -o demopkg.gls demopkg.glo
 $ pdflatex demopkg.dtx
@@ -40,7 +40,7 @@ C-c LaTeX`.)
 Finally, to use the generated `.sty` file, move it to the appropriate location
 for your TeX distribution. Perhaps the easiest way to do this is by running
 
-```bash
+```
 $ mv demopkg.sty $(kpsewhich -var-value=TEXMFHOME)/tex/latex
 ```
 
@@ -49,13 +49,13 @@ device, you're probably better off setting
 `/usr/local/texlive/texmf-local/tex/latex` as the target directory (and then
 running
 
-```bash
+```
 # texhash
 ```
 
 To ensure that installation has succeeded, run
 
-```bash
+```
 $ kpsewhich demopkg.sty
 ```
 
