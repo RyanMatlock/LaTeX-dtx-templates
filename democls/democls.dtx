@@ -11,7 +11,9 @@
 file](http://www.texdev.net/2009/10/06/a-model-dtx-file/) with some
 modifications made to suit my tastes. In particular, I find it helpful to
 include detailed installation instructions by default, to use the `gitinfo2`
-package, and to generally package things with GitHub distribution in mind.
+package, and to generally package things with GitHub distribution in
+mind. Being class-targeted, this file differs more significantly from Wright's
+original than `demopkg.dtx`.
 
 Class usage details should be covered by `democls.pdf`.
 
@@ -22,7 +24,7 @@ Run
 $ pdflatex democls.dtx
 ```
 
-to generate the `.ins`, `.sty`, and `.pdf` files. In order to properly generate
+to generate the `.ins`, `.cls`, and `.pdf` files. In order to properly generate
 the change history and index, run
 
 ```bash
@@ -37,7 +39,7 @@ of TeXShop not requiring me to manually run `makeindex`, but using Emacs AUCTeX
 seems to require manual `makeindex`ing whether I run `C-c C-c latexmk` or `C-c
 C-c LaTeX`.)
 
-Finally, to use the generated `.sty` file, move it to the appropriate location
+Finally, to use the generated `.cls` file, move it to the appropriate location
 for your TeX distribution. Perhaps the easiest way to do this is by running
 
 ```bash
@@ -128,7 +130,7 @@ and the derived files
 \endpostamble
 \usedir{tex/latex/democls}
 \generate{
-  \file{\jobname.sty}{\from{\jobname.dtx}{class}}
+  \file{\jobname.cls}{\from{\jobname.dtx}{class}}
 }
 %</install>
 %<install>\endbatchfile
@@ -172,7 +174,7 @@ and the derived files
 %</driver>
 % \fi
 % 
-%\GetFileInfo{\jobname.sty}
+%\GetFileInfo{\jobname.cls}
 %
 %\title{^^A
 %  \textsf{democls} --- description text\thanks{^^A
