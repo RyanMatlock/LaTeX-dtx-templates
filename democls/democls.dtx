@@ -4,15 +4,86 @@
 \iffalse
 %</internal>
 %<*readme>
-----------------------------------------------------------------
-demopkg --- description text
-E-mail: you@your.domain
-Released under the LaTeX Project Public License v1.3c or later
-See http://www.latex-project.org/lppl.txt
-----------------------------------------------------------------
+# democls --- model dtx file
 
-Some text about the package: probably the same as the abstract.
+## Description
+`democls.dtx` is based on [Joseph Wright's model `dtx`
+file](http://www.texdev.net/2009/10/06/a-model-dtx-file/) with some
+modifications made to suit my tastes. In particular, I find it helpful to
+include detailed installation instructions by default, to use the `gitinfo2`
+package, and to generally package things with GitHub distribution in mind.
+
+Class usage details should be covered by `democls.pdf`.
+
+## Installation
+Run
+
+```bash
+$ pdflatex democls.dtx
+```
+
+to generate the `.ins`, `.sty`, and `.pdf` files. In order to properly generate
+the change history and index, run
+
+```bash
+$ makeindex -s gind.ist democls
+$ makeindex -s gglo.ist -o democls.gls democls.glo
+$ pdflatex democls.dtx
+$ pdflatex democls.dtx
+```
+
+(You TeX environment may take care of this for you. I have vague recollections
+of TeXShop not requiring me to manually run `makeindex`, but using Emacs AUCTeX
+seems to require manual `makeindex`ing whether I run `C-c C-c latexmk` or `C-c
+C-c LaTeX`.)
+
+Finally, to use the generated `.sty` file, move it to the appropriate location
+for your TeX distribution. Perhaps the easiest way to do this is by running
+
+```bash
+$ mv democls.cls $(kpsewhich -var-value=TEXMFHOME)/tex/latex
+```
+
+although if you're looking to make the file available to all users on a Unix
+device, you're probably better off setting
+`/usr/local/texlive/texmf-local/tex/latex` as the target directory (and then
+running
+
+```bash
+# texhash
+```
+
+To ensure that installation has succeeded, run
+
+```bash
+$ kpsewhich democls.cls
+```
+
+and if the output is a path to the file, you're golden.
 %</readme>
+%<*license>
+## democls.dtx
+Copyright 2015 M. Y. Name
+
+This work may be distributed and/or modified under the conditions of the LaTeX
+Project Public License, either version 1.3 of this license or (at your option)
+any later version.
+
+The latest version of this license is in http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of LaTeX version
+2005/12/01 or later.
+
+This work has the LPPL maintenance status `maintained'.
+
+The Current Maintainer of this work is M. Y. Name.
+
+This work consists of the files
+* `democls.dtx`
+and the derived files
+* `democls.ins`,
+* `democls.cls`,
+* `democls.pdf`.
+%</license>
 %<*internal>
 \fi
 \def\nameofplainTeX{plain}
@@ -26,8 +97,9 @@ Some text about the package: probably the same as the abstract.
 \askforoverwritefalse
 \preamble
 ----------------------------------------------------------------
-demopkg --- description text
-E-mail: you@your.domain
+democls --- brief description
+email: you@your.domain
+GitHub: https://github.com/YourGitHubProfile
 Released under the LaTeX Project Public License v1.3c or later
 See http://www.latex-project.org/lppl.txt
 ----------------------------------------------------------------
@@ -37,37 +109,41 @@ See http://www.latex-project.org/lppl.txt
 
 Copyright (C) 2009 by You <you@your.domain>
 
-This work may be distributed and/or modified under the
-conditions of the LaTeX Project Public License (LPPL), either
-version 1.3c of this license or (at your option) any later
-version.  The latest version of this license is in the file:
+This work may be distributed and/or modified under the conditions of the LaTeX
+Project Public License (LPPL), either version 1.3c of this license or (at your
+option) any later version. The latest version of this license is in the file:
 
 http://www.latex-project.org/lppl.txt
 
 This work is "maintained" (as per LPPL maintenance status) by
 You.
 
-This work consists of the file  demopkg.dtx
-and the derived files           demopkg.ins,
-                                demopkg.pdf and
-                                demopkg.sty.
+This work consists of the file
+  democls.dtx
+and the derived files
+  democls.ins,
+  democls.pdf, and
+  democls.cls.
 
 \endpostamble
-\usedir{tex/latex/demopkg}
+\usedir{tex/latex/democls}
 \generate{
-  \file{\jobname.sty}{\from{\jobname.dtx}{package}}
+  \file{\jobname.sty}{\from{\jobname.dtx}{class}}
 }
 %</install>
 %<install>\endbatchfile
 %<*internal>
-\usedir{source/latex/demopkg}
+\usedir{source/latex/democls}
 \generate{
   \file{\jobname.ins}{\from{\jobname.dtx}{install}}
 }
 \nopreamble\nopostamble
-\usedir{doc/latex/demopkg}
+\usedir{doc/latex/democls}
 \generate{
-  \file{README.txt}{\from{\jobname.dtx}{readme}}
+  \file{README.md}{\from{\jobname.dtx}{readme}}
+}
+\generate{
+  \file{LICENSE.md}{\from{\jobname.dtx}{license}}
 }
 \ifx\fmtname\nameofplainTeX
   \expandafter\endbatchfile
@@ -75,16 +151,18 @@ and the derived files           demopkg.ins,
   \expandafter\endgroup
 \fi
 %</internal>
-%<*package>
+%<*class>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{demopkg}[2009/10/06 v1.0 description text]
-%</package>
+\ProvidesClass{democls}[2015/07/07 v1.0 description text]
+%</class>
 %<*driver>
 \documentclass{ltxdoc}
-\usepackage[T1]{fontenc}
+\usepackage[T1]{fontenc} % you should always use this, even with English
+                         % see http://tex.stackexchange.com/a/677/51283
 \usepackage{lmodern}
 \usepackage{\jobname}
 \usepackage[numbered]{hypdoc}
+\usepackage{gitinfo2}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
@@ -97,18 +175,25 @@ and the derived files           demopkg.ins,
 %\GetFileInfo{\jobname.sty}
 %
 %\title{^^A
-%  \textsf{demopkg} --- description text\thanks{^^A
-%    This file describes version \fileversion, last revised \filedate.^^A
+%  \textsf{democls} --- description text\thanks{^^A
+%    This file describes version \fileversion, last revised \filedate\space ^^A
+%    (\texttt{git} commit \texttt{\gitAbbrevHash}).
 %  }^^A
 %}
 %\author{^^A
-%  You\thanks{E-mail: you@your.domain}^^A
+%  You\thanks{email: you+oobfuscation@your.domain}^^A
 %}
 %\date{Released \filedate}
 %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\DoNotIndex{\newcommand}
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 %\maketitle
 %
-%\changes{v1.0}{2009/10/06}{First public release}
+%\changes{v1.0}{2015/07/07}{initial release}
 %
 %\DescribeMacro{\examplemacro}
 % Some text about an example macro called \cs{examplemacro}, which
@@ -121,19 +206,19 @@ and the derived files           demopkg.ins,
 %}
 %
 %    \begin{macrocode}
-%<*package>
+%<*class>
 %    \end{macrocode}
 %    
 %\begin{macro}{\examplemacro}
-%\changes{v1.0}{2009/10/06}{Some change from the previous version}
+%\changes{v1.0}{2015/07/07}{Some change from the previous version}
 %    \begin{macrocode}
-\newcommand*\examplemacro[2][]{%
-  Some code here, probably
+\newcommand{\examplemacro}[2][]{%
+  \frob{#1 #2}
 }
 %    \end{macrocode}
 %\end{macro} 
 %
 %    \begin{macrocode}
-%</package>
+%</class>
 %    \end{macrocode}
 %\Finale
