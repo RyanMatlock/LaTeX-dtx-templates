@@ -163,9 +163,28 @@ and the derived files
 \usepackage{\jobname}
 \usepackage[numbered]{hypdoc}
 \usepackage{gitinfo2}
+\usepackage{mdframed}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
+
+\newmdenv[%
+  backgroundcolor = gray!10,
+  outerlinecolor = gray!50,
+]{innerdemobox}
+
+\newenvironment{demobox}
+{%
+  \begin{center}%
+    \begin{minipage}{0.8\textwidth}%
+      \begin{innerdemobox}
+}
+{%
+      \end{innerdemobox}%
+    \end{minipage}%
+  \end{center}%
+}
+
 \begin{document}
   \DocInput{\jobname.dtx}
 \end{document}
@@ -187,7 +206,11 @@ and the derived files
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+%\DoNotIndex{\dotfill}
 %\DoNotIndex{\newcommand}
+%\DoNotIndex{\noindent}
+%\DoNotIndex{\textbf}
+%\DoNotIndex{\textit}
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -196,9 +219,11 @@ and the derived files
 %\changes{v1.0}{2015/07/07}{initial release}
 %
 %\DescribeMacro{\examplemacro}
-% Some text about an example macro called \cs{examplemacro}, which
-% might have an optional argument \oarg{arg1} and mandatory one
-% \marg{arg2}. 
+% Some text about an example macro called \cs{examplemacro}, which might have
+% an optional argument \oarg{arg1} and mandatory one \marg{arg2}. This is an
+% example of \verb+\examplemacro[foo]{bar}+ looks:
+%
+% \begin{demobox}\examplemacro[foo]{bar}\end{demobox}
 %
 %\StopEventually{^^A
 %  \PrintChanges
@@ -213,7 +238,7 @@ and the derived files
 %\changes{v1.0}{2015/07/07}{Some change from the previous version}
 %    \begin{macrocode}
 \newcommand{\examplemacro}[2][]{%
-  \frob{#1 #2}
+  \noindent\textbf{#2}\dotfill\textit{#1}
 }
 %    \end{macrocode}
 %\end{macro} 
