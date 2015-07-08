@@ -20,14 +20,14 @@ Class usage details should be covered by `democls.pdf`.
 ## Installation
 Run
 
-```bash
+```
 $ pdflatex democls.dtx
 ```
 
 to generate the `.ins`, `.cls`, and `.pdf` files. In order to properly generate
 the change history and index, run
 
-```bash
+```
 $ makeindex -s gind.ist democls
 $ makeindex -s gglo.ist -o democls.gls democls.glo
 $ pdflatex democls.dtx
@@ -42,7 +42,7 @@ C-c LaTeX`.)
 Finally, to use the generated `.cls` file, move it to the appropriate location
 for your TeX distribution. Perhaps the easiest way to do this is by running
 
-```bash
+```
 $ mv democls.cls $(kpsewhich -var-value=TEXMFHOME)/tex/latex
 ```
 
@@ -51,13 +51,13 @@ device, you're probably better off setting
 `/usr/local/texlive/texmf-local/tex/latex` as the target directory (and then
 running
 
-```bash
+```
 # texhash
 ```
 
 To ensure that installation has succeeded, run
 
-```bash
+```
 $ kpsewhich democls.cls
 ```
 
@@ -162,7 +162,6 @@ and the derived files
 \usepackage[T1]{fontenc} % you should always use this, even with English
                          % see http://tex.stackexchange.com/a/677/51283
 \usepackage{lmodern}
-\usepackage{\jobname}
 \usepackage[numbered]{hypdoc}
 \usepackage{gitinfo2}
 \EnableCrossrefs
@@ -183,7 +182,7 @@ and the derived files
 %  }^^A
 %}
 %\author{^^A
-%  You\thanks{email: you+oobfuscation@your.domain}^^A
+%  You\thanks{email: you+obfuscation@your.domain}^^A
 %}
 %\date{Released \filedate}
 %
@@ -197,18 +196,30 @@ and the derived files
 %
 %\changes{v1.0}{2015/07/07}{initial release}
 %
+%\begin{abstract}
+%  If you want more information, read this.
+%\end{abstract}
+%
+%\section{Documentation}
+%
 %\DescribeMacro{\examplemacro}
 % Some text about an example macro called \cs{examplemacro}, which
 % might have an optional argument \oarg{arg1} and mandatory one
-% \marg{arg2}. 
+% \marg{arg2}. In 
 %
 %\StopEventually{^^A
 %  \PrintChanges
 %  \PrintIndex
 %}
 %
+%\section{Class Definitions}
+%
 %    \begin{macrocode}
 %<*class>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\LoadClass{article}
 %    \end{macrocode}
 %    
 %\begin{macro}{\examplemacro}
