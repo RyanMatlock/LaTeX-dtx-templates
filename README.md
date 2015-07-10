@@ -1,6 +1,5 @@
-# Model dtx files for LaTeX package and class writers
+## Model dtx files for LaTeX package and class writers
 
-## Basic description
 `demopkg.dtx` and `democls.dtx` are based on [Joseph Wright's model `dtx`
 file](http://www.texdev.net/2009/10/06/a-model-dtx-file/) with some
 modifications made to suit my tastes. In particular, I find it helpful to
