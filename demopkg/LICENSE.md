@@ -17,5 +17,5 @@ This work consists of the files
 * `demopkg.dtx`
 and the derived files
 * `demopkg.ins`,
-* `demopkg.sty`,
+* `demopkg.sty`, and
 * `demopkg.pdf`.

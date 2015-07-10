@@ -18,8 +18,13 @@ Run
 $ pdflatex democls.dtx
 ```
 
-to generate the `.ins`, `.cls`, and `.pdf` files. In order to properly generate
-the change history and index, run
+to generate the `.ins`, `.cls`, `.pdf`, and `example.tex` files. Because of the
+difficulty usually involved in providing examples of class macros and
+environments within the class documentation, a separate file, `example.tex` is
+needed, and `pdflatex` should be called on it if you wish to see how it
+looks.
+
+In order to properly generate the documentation's change history and index, run
 
 ```
 $ makeindex -s gind.ist democls

@@ -18,4 +18,5 @@ This work consists of the files
 and the derived files
 * `democls.ins`,
 * `democls.cls`,
-* `democls.pdf`.
+* `democls.pdf`, and
+* `example.tex`.

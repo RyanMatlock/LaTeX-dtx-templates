@@ -1,8 +1,8 @@
 % \iffalse meta-comment
-% !TEX program  = pdfLaTeX
 %<*internal>
 \iffalse
 %</internal>
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% README.md %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %<*readme>
 # democls --- model dtx file
 
@@ -24,8 +24,13 @@ Run
 $ pdflatex democls.dtx
 ```
 
-to generate the `.ins`, `.cls`, and `.pdf` files. In order to properly generate
-the change history and index, run
+to generate the `.ins`, `.cls`, `.pdf`, and `example.tex` files. Because of the
+difficulty usually involved in providing examples of class macros and
+environments within the class documentation, a separate file, `example.tex` is
+needed, and `pdflatex` should be called on it if you wish to see how it
+looks.
+
+In order to properly generate the documentation's change history and index, run
 
 ```
 $ makeindex -s gind.ist democls
@@ -63,6 +68,7 @@ $ kpsewhich democls.cls
 
 and if the output is a path to the file, you're golden.
 %</readme>
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LICENSE.md %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %<*license>
 ## democls.dtx
 Copyright 2015 M. Y. Name
@@ -84,8 +90,17 @@ This work consists of the files
 and the derived files
 * `democls.ins`,
 * `democls.cls`,
-* `democls.pdf`.
+* `democls.pdf`, and
+* `example.tex`.
 %</license>
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% example.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%<*example>
+\documentclass{democls}
+\begin{document}
+\examplemacro[Hello]{world!}
+\end{document}
+%</example>
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %<*internal>
 \fi
 \def\nameofplainTeX{plain}
@@ -100,7 +115,7 @@ and the derived files
 \preamble
 ----------------------------------------------------------------
 democls --- brief description
-email: you@your.domain
+email: you+obfuscation@your.domain
 GitHub: https://github.com/YourGitHubProfile
 Released under the LaTeX Project Public License v1.3c or later
 See http://www.latex-project.org/lppl.txt
@@ -109,7 +124,7 @@ See http://www.latex-project.org/lppl.txt
 \endpreamble
 \postamble
 
-Copyright (C) 2009 by You <you@your.domain>
+Copyright (C) 2009 by You <you+obfuscation@your.domain>
 
 This work may be distributed and/or modified under the conditions of the LaTeX
 Project Public License (LPPL), either version 1.3c of this license or (at your
@@ -124,13 +139,18 @@ This work consists of the file
   democls.dtx
 and the derived files
   democls.ins,
+  democls.cls,
   democls.pdf, and
-  democls.cls.
+  example.tex.
 
 \endpostamble
 \usedir{tex/latex/democls}
 \generate{
   \file{\jobname.cls}{\from{\jobname.dtx}{class}}
+}
+\usedir{tex/latex/democls}
+\generate{
+  \file{example.tex}{\from{\jobname.dtx}{example}}
 }
 %</install>
 %<install>\endbatchfile
@@ -153,9 +173,13 @@ and the derived files
   \expandafter\endgroup
 \fi
 %</internal>
+%\def\fileversion{v1.0} % \GetFileInfo doesn't work for classes(?)
+%\def\filedate{2015/07/10}
 %<*class>
+\def\fileversion{v1.0}
+\def\filedate{2015/07/10}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{democls}[2015/07/07 v1.0 description text]
+\ProvidesClass{democls}[\filedate\space\fileversion\space description text]
 %</class>
 %<*driver>
 \documentclass{ltxdoc}
@@ -172,8 +196,6 @@ and the derived files
 \end{document}
 %</driver>
 % \fi
-% 
-%\GetFileInfo{\jobname.cls}
 %
 %\title{^^A
 %  \textsf{democls} --- description text\thanks{^^A
@@ -188,13 +210,16 @@ and the derived files
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+%\DoNotIndex{\LoadClass}
 %\DoNotIndex{\newcommand}
+%\DoNotIndex{\textbf}
+%\DoNotIndex{\textit}
 %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %\maketitle
 %
-%\changes{v1.0}{2015/07/07}{initial release}
+%\changes{v1.0}{2015/07/10}{initial release}
 %
 %\begin{abstract}
 %  If you want more information, read this.
@@ -205,7 +230,7 @@ and the derived files
 %\DescribeMacro{\examplemacro}
 % Some text about an example macro called \cs{examplemacro}, which
 % might have an optional argument \oarg{arg1} and mandatory one
-% \marg{arg2}. In 
+% \marg{arg2}.
 %
 %\StopEventually{^^A
 %  \PrintChanges
@@ -223,10 +248,10 @@ and the derived files
 %    \end{macrocode}
 %    
 %\begin{macro}{\examplemacro}
-%\changes{v1.0}{2015/07/07}{Some change from the previous version}
+%\changes{v1.0}{2015/07/10}{Some change from the previous version}
 %    \begin{macrocode}
 \newcommand{\examplemacro}[2][]{%
-  \frob{#1 #2}
+  \textit{#1} --- \textbf{#2}
 }
 %    \end{macrocode}
 %\end{macro} 
